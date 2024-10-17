@@ -1,0 +1,33 @@
+<!-- <div *ngFor="let todo of todosItems()">
+  <p>ID: {{ todo.id }}</p>
+  <p>UserId: {{ todo.userId }}</p>
+  <p>Title: {{ todo.title }}</p>
+  <p>Completed: {{ todo.completed }}</p>
+  <hr>
+</div> -->
+<!-- @for (item of todosItems(); track item.id) {
+<div>
+  <p>ID: {{ item.id }}</p>
+  <p>UserId: {{ item.userId }}</p>
+  <p>Title: {{ item.title }}</p>
+  <p>Completed: {{ item.completed }}</p>
+  <hr>
+</div>
+} -->
+
+<h3>Todos List</h3>
+
+@if (!todosItems().length) {
+<p>Loading...</p>
+}
+
+<form>
+  <h2>Filter Todos</h2>
+  <input name="searchTerm" [(ngModel)]="searchTerm" placeholder="Search todos..." />
+</form>
+
+<ul class="todos">
+  @for (todo of todosItems() | filterTodos : searchTerm(); track todo.id) {
+  <app-todo-item (todoToggled)="updateTodoItem($event)" [todo]="todo" />
+  }
+</ul>

@@ -1,0 +1,5 @@
+<app-greeting [message]="homeMessage()" />
+<app-counter />
+<br />
+<label for="searchInput">Search:</label>
+<input type="text" id="searchInput" (keyup)="KeyUpHandler($event)" />
